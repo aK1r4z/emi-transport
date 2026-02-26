@@ -11,8 +11,7 @@ import (
 	"net/url"
 	"time"
 
-	core "github.com/aK1r4z/emi-core"
-	"github.com/aK1r4z/emi-core/api"
+	emi_core "github.com/aK1r4z/emi-core"
 )
 
 type HttpResult struct {
@@ -22,7 +21,7 @@ type HttpResult struct {
 }
 
 type HttpClient struct {
-	logger core.Logger
+	logger Logger
 
 	restGateway string
 	accessToken string
@@ -36,7 +35,7 @@ type HttpClient struct {
 	maxRetryJitter time.Duration
 }
 
-func NewHttpClient(logger core.Logger, restGateway string, accessToken string) *HttpClient {
+func NewHttpClient(logger Logger, restGateway string, accessToken string) *HttpClient {
 	return &HttpClient{
 		logger: logger,
 
@@ -56,7 +55,7 @@ func NewHttpClient(logger core.Logger, restGateway string, accessToken string) *
 }
 
 func NewHttpClientWithOptions(
-	logger core.Logger,
+	logger Logger,
 
 	restGateway string,
 	accessToken string,
@@ -188,135 +187,135 @@ func (h *HttpClient) doPost(ctx context.Context, urlPath string, request any, re
 // SystemAPI
 
 // 获取登录信息
-func (h *HttpClient) GetLoginInfo(ctx context.Context, request api.GetLoginInfoRequest) (*api.GetLoginInfoResponse, error) {
-	var resp api.GetLoginInfoResponse
-	if err := h.Post(ctx, string(core.GetLoginInfo), request, &resp); err != nil {
+func (h *HttpClient) GetLoginInfo(ctx context.Context, request emi_core.GetLoginInfoRequest) (*emi_core.GetLoginInfoResponse, error) {
+	var resp emi_core.GetLoginInfoResponse
+	if err := h.Post(ctx, string(emi_core.GetLoginInfo), request, &resp); err != nil {
 		return nil, err
 	}
 	return &resp, nil
 }
 
 // 获取协议端信息
-func (h *HttpClient) GetImplInfo(ctx context.Context, request api.GetImplInfoRequest) (*api.GetImplInfoResponse, error) {
-	var resp api.GetImplInfoResponse
-	if err := h.Post(ctx, string(core.GetImplInfo), request, &resp); err != nil {
+func (h *HttpClient) GetImplInfo(ctx context.Context, request emi_core.GetImplInfoRequest) (*emi_core.GetImplInfoResponse, error) {
+	var resp emi_core.GetImplInfoResponse
+	if err := h.Post(ctx, string(emi_core.GetImplInfo), request, &resp); err != nil {
 		return nil, err
 	}
 	return &resp, nil
 }
 
 // 获取用户个人信息
-func (h *HttpClient) GetUserProfile(ctx context.Context, request api.GetUserProfileRequest) (*api.GetUserProfileResponse, error) {
-	var resp api.GetUserProfileResponse
-	if err := h.Post(ctx, string(core.GetUserProfile), request, &resp); err != nil {
+func (h *HttpClient) GetUserProfile(ctx context.Context, request emi_core.GetUserProfileRequest) (*emi_core.GetUserProfileResponse, error) {
+	var resp emi_core.GetUserProfileResponse
+	if err := h.Post(ctx, string(emi_core.GetUserProfile), request, &resp); err != nil {
 		return nil, err
 	}
 	return &resp, nil
 }
 
 // 获取好友列表
-func (h *HttpClient) GetFriendList(ctx context.Context, request api.GetFriendListRequest) (*api.GetFriendListResponse, error) {
-	var resp api.GetFriendListResponse
-	if err := h.Post(ctx, string(core.GetFriendList), request, &resp); err != nil {
+func (h *HttpClient) GetFriendList(ctx context.Context, request emi_core.GetFriendListRequest) (*emi_core.GetFriendListResponse, error) {
+	var resp emi_core.GetFriendListResponse
+	if err := h.Post(ctx, string(emi_core.GetFriendList), request, &resp); err != nil {
 		return nil, err
 	}
 	return &resp, nil
 }
 
 // 获取好友信息
-func (h *HttpClient) GetFriendInfo(ctx context.Context, request api.GetFriendInfoRequest) (*api.GetFriendInfoResponse, error) {
-	var resp api.GetFriendInfoResponse
-	if err := h.Post(ctx, string(core.GetFriendInfo), request, &resp); err != nil {
+func (h *HttpClient) GetFriendInfo(ctx context.Context, request emi_core.GetFriendInfoRequest) (*emi_core.GetFriendInfoResponse, error) {
+	var resp emi_core.GetFriendInfoResponse
+	if err := h.Post(ctx, string(emi_core.GetFriendInfo), request, &resp); err != nil {
 		return nil, err
 	}
 	return &resp, nil
 }
 
 // 获取群列表
-func (h *HttpClient) GetGroupList(ctx context.Context, request api.GetGroupListRequest) (*api.GetGroupListResponse, error) {
-	var resp api.GetGroupListResponse
-	if err := h.Post(ctx, string(core.GetGroupList), request, &resp); err != nil {
+func (h *HttpClient) GetGroupList(ctx context.Context, request emi_core.GetGroupListRequest) (*emi_core.GetGroupListResponse, error) {
+	var resp emi_core.GetGroupListResponse
+	if err := h.Post(ctx, string(emi_core.GetGroupList), request, &resp); err != nil {
 		return nil, err
 	}
 	return &resp, nil
 }
 
 // 获取群信息
-func (h *HttpClient) GetGroupInfo(ctx context.Context, request api.GetGroupInfoRequest) (*api.GetGroupInfoResponse, error) {
-	var resp api.GetGroupInfoResponse
-	if err := h.Post(ctx, string(core.GetGroupInfo), request, &resp); err != nil {
+func (h *HttpClient) GetGroupInfo(ctx context.Context, request emi_core.GetGroupInfoRequest) (*emi_core.GetGroupInfoResponse, error) {
+	var resp emi_core.GetGroupInfoResponse
+	if err := h.Post(ctx, string(emi_core.GetGroupInfo), request, &resp); err != nil {
 		return nil, err
 	}
 	return &resp, nil
 }
 
 // 获取群成员列表
-func (h *HttpClient) GetGroupMemberList(ctx context.Context, request api.GetGroupMemberListRequest) (*api.GetGroupMemberListResponse, error) {
-	var resp api.GetGroupMemberListResponse
-	if err := h.Post(ctx, string(core.GetGroupMemberList), request, &resp); err != nil {
+func (h *HttpClient) GetGroupMemberList(ctx context.Context, request emi_core.GetGroupMemberListRequest) (*emi_core.GetGroupMemberListResponse, error) {
+	var resp emi_core.GetGroupMemberListResponse
+	if err := h.Post(ctx, string(emi_core.GetGroupMemberList), request, &resp); err != nil {
 		return nil, err
 	}
 	return &resp, nil
 }
 
 // 获取群成员信息
-func (h *HttpClient) GetGroupMemberInfo(ctx context.Context, request api.GetGroupMemberInfoRequest) (*api.GetGroupMemberInfoResponse, error) {
-	var resp api.GetGroupMemberInfoResponse
-	if err := h.Post(ctx, string(core.GetGroupMemberInfo), request, &resp); err != nil {
+func (h *HttpClient) GetGroupMemberInfo(ctx context.Context, request emi_core.GetGroupMemberInfoRequest) (*emi_core.GetGroupMemberInfoResponse, error) {
+	var resp emi_core.GetGroupMemberInfoResponse
+	if err := h.Post(ctx, string(emi_core.GetGroupMemberInfo), request, &resp); err != nil {
 		return nil, err
 	}
 	return &resp, nil
 }
 
 // 设置 QQ 账号头像
-func (h *HttpClient) SetAvatar(ctx context.Context, request api.SetAvatarRequest) (*api.SetAvatarResponse, error) {
-	var resp api.SetAvatarResponse
-	if err := h.Post(ctx, string(core.SetAvatar), request, &resp); err != nil {
+func (h *HttpClient) SetAvatar(ctx context.Context, request emi_core.SetAvatarRequest) (*emi_core.SetAvatarResponse, error) {
+	var resp emi_core.SetAvatarResponse
+	if err := h.Post(ctx, string(emi_core.SetAvatar), request, &resp); err != nil {
 		return nil, err
 	}
 	return &resp, nil
 }
 
 // 设置 QQ 账号昵称
-func (h *HttpClient) SetNickname(ctx context.Context, request api.SetNicknameRequest) (*api.SetNicknameResponse, error) {
-	var resp api.SetNicknameResponse
-	if err := h.Post(ctx, string(core.SetNickname), request, &resp); err != nil {
+func (h *HttpClient) SetNickname(ctx context.Context, request emi_core.SetNicknameRequest) (*emi_core.SetNicknameResponse, error) {
+	var resp emi_core.SetNicknameResponse
+	if err := h.Post(ctx, string(emi_core.SetNickname), request, &resp); err != nil {
 		return nil, err
 	}
 	return &resp, nil
 }
 
 // 设置 QQ 账号个性签名
-func (h *HttpClient) SetBio(ctx context.Context, request api.SetBioRequest) (*api.SetBioResponse, error) {
-	var resp api.SetBioResponse
-	if err := h.Post(ctx, string(core.SetBio), request, &resp); err != nil {
+func (h *HttpClient) SetBio(ctx context.Context, request emi_core.SetBioRequest) (*emi_core.SetBioResponse, error) {
+	var resp emi_core.SetBioResponse
+	if err := h.Post(ctx, string(emi_core.SetBio), request, &resp); err != nil {
 		return nil, err
 	}
 	return &resp, nil
 }
 
 // 获取自定义表情 URL 列表
-func (h *HttpClient) GetCustomFaceURLList(ctx context.Context, request api.GetCustomFaceURLListRequest) (*api.GetCustomFaceURLListResponse, error) {
-	var resp api.GetCustomFaceURLListResponse
-	if err := h.Post(ctx, string(core.GetCustomFaceURLList), request, &resp); err != nil {
+func (h *HttpClient) GetCustomFaceURLList(ctx context.Context, request emi_core.GetCustomFaceURLListRequest) (*emi_core.GetCustomFaceURLListResponse, error) {
+	var resp emi_core.GetCustomFaceURLListResponse
+	if err := h.Post(ctx, string(emi_core.GetCustomFaceURLList), request, &resp); err != nil {
 		return nil, err
 	}
 	return &resp, nil
 }
 
 // 获取 Cookies
-func (h *HttpClient) GetCookies(ctx context.Context, request api.GetCookiesRequest) (*api.GetCookiesResponse, error) {
-	var resp api.GetCookiesResponse
-	if err := h.Post(ctx, string(core.GetCookies), request, &resp); err != nil {
+func (h *HttpClient) GetCookies(ctx context.Context, request emi_core.GetCookiesRequest) (*emi_core.GetCookiesResponse, error) {
+	var resp emi_core.GetCookiesResponse
+	if err := h.Post(ctx, string(emi_core.GetCookies), request, &resp); err != nil {
 		return nil, err
 	}
 	return &resp, nil
 }
 
 // 获取 CSRF Token
-func (h *HttpClient) GetCSRFToken(ctx context.Context, request api.GetCSRFTokenRequest) (*api.GetCSRFTokenResponse, error) {
-	var resp api.GetCSRFTokenResponse
-	if err := h.Post(ctx, string(core.GetCSRFToken), request, &resp); err != nil {
+func (h *HttpClient) GetCSRFToken(ctx context.Context, request emi_core.GetCSRFTokenRequest) (*emi_core.GetCSRFTokenResponse, error) {
+	var resp emi_core.GetCSRFTokenResponse
+	if err := h.Post(ctx, string(emi_core.GetCSRFToken), request, &resp); err != nil {
 		return nil, err
 	}
 	return &resp, nil
@@ -325,81 +324,81 @@ func (h *HttpClient) GetCSRFToken(ctx context.Context, request api.GetCSRFTokenR
 // MessageAPI
 
 // 发送私聊消息
-func (h *HttpClient) SendPrivateMessage(ctx context.Context, request api.SendPrivateMessageRequest) (*api.SendPrivateMessageResponse, error) {
-	var resp api.SendPrivateMessageResponse
-	if err := h.Post(ctx, string(core.SendPrivateMessage), request, &resp); err != nil {
+func (h *HttpClient) SendPrivateMessage(ctx context.Context, request emi_core.SendPrivateMessageRequest) (*emi_core.SendPrivateMessageResponse, error) {
+	var resp emi_core.SendPrivateMessageResponse
+	if err := h.Post(ctx, string(emi_core.SendPrivateMessage), request, &resp); err != nil {
 		return nil, err
 	}
 	return &resp, nil
 }
 
 // 发送群聊消息
-func (h *HttpClient) SendGroupMessage(ctx context.Context, request api.SendGroupMessageRequest) (*api.SendGroupMessageResponse, error) {
-	var resp api.SendGroupMessageResponse
-	if err := h.Post(ctx, string(core.SendGroupMessage), request, &resp); err != nil {
+func (h *HttpClient) SendGroupMessage(ctx context.Context, request emi_core.SendGroupMessageRequest) (*emi_core.SendGroupMessageResponse, error) {
+	var resp emi_core.SendGroupMessageResponse
+	if err := h.Post(ctx, string(emi_core.SendGroupMessage), request, &resp); err != nil {
 		return nil, err
 	}
 	return &resp, nil
 }
 
 // 撤回私聊消息
-func (h *HttpClient) RecallPrivateMessage(ctx context.Context, request api.RecallPrivateMessageRequest) (*api.RecallPrivateMessageResponse, error) {
-	var resp api.RecallPrivateMessageResponse
-	if err := h.Post(ctx, string(core.RecallPrivateMessage), request, &resp); err != nil {
+func (h *HttpClient) RecallPrivateMessage(ctx context.Context, request emi_core.RecallPrivateMessageRequest) (*emi_core.RecallPrivateMessageResponse, error) {
+	var resp emi_core.RecallPrivateMessageResponse
+	if err := h.Post(ctx, string(emi_core.RecallPrivateMessage), request, &resp); err != nil {
 		return nil, err
 	}
 	return &resp, nil
 }
 
 // 撤回群聊消息
-func (h *HttpClient) RecallGroupMessage(ctx context.Context, request api.RecallGroupMessageRequest) (*api.RecallGroupMessageResponse, error) {
-	var resp api.RecallGroupMessageResponse
-	if err := h.Post(ctx, string(core.RecallGroupMessage), request, &resp); err != nil {
+func (h *HttpClient) RecallGroupMessage(ctx context.Context, request emi_core.RecallGroupMessageRequest) (*emi_core.RecallGroupMessageResponse, error) {
+	var resp emi_core.RecallGroupMessageResponse
+	if err := h.Post(ctx, string(emi_core.RecallGroupMessage), request, &resp); err != nil {
 		return nil, err
 	}
 	return &resp, nil
 }
 
 // 获取消息
-func (h *HttpClient) GetMessage(ctx context.Context, request api.GetMessageRequest) (*api.GetMessageResponse, error) {
-	var resp api.GetMessageResponse
-	if err := h.Post(ctx, string(core.GetMessage), request, &resp); err != nil {
+func (h *HttpClient) GetMessage(ctx context.Context, request emi_core.GetMessageRequest) (*emi_core.GetMessageResponse, error) {
+	var resp emi_core.GetMessageResponse
+	if err := h.Post(ctx, string(emi_core.GetMessage), request, &resp); err != nil {
 		return nil, err
 	}
 	return &resp, nil
 }
 
 // 获取历史消息列表
-func (h *HttpClient) GetHistoryMessages(ctx context.Context, request api.GetHistoryMessagesRequest) (*api.GetHistoryMessagesResponse, error) {
-	var resp api.GetHistoryMessagesResponse
-	if err := h.Post(ctx, string(core.GetHistoryMessages), request, &resp); err != nil {
+func (h *HttpClient) GetHistoryMessages(ctx context.Context, request emi_core.GetHistoryMessagesRequest) (*emi_core.GetHistoryMessagesResponse, error) {
+	var resp emi_core.GetHistoryMessagesResponse
+	if err := h.Post(ctx, string(emi_core.GetHistoryMessages), request, &resp); err != nil {
 		return nil, err
 	}
 	return &resp, nil
 }
 
 // 获取临时资源链接
-func (h *HttpClient) GetResourceTempURL(ctx context.Context, request api.GetResourceTempURLRequest) (*api.GetResourceTempURLResponse, error) {
-	var resp api.GetResourceTempURLResponse
-	if err := h.Post(ctx, string(core.GetResourceTempURL), request, &resp); err != nil {
+func (h *HttpClient) GetResourceTempURL(ctx context.Context, request emi_core.GetResourceTempURLRequest) (*emi_core.GetResourceTempURLResponse, error) {
+	var resp emi_core.GetResourceTempURLResponse
+	if err := h.Post(ctx, string(emi_core.GetResourceTempURL), request, &resp); err != nil {
 		return nil, err
 	}
 	return &resp, nil
 }
 
 // 获取合并转发消息内容
-func (h *HttpClient) GetForwardedMessages(ctx context.Context, request api.GetForwardedMessagesRequest) (*api.GetForwardedMessagesResponse, error) {
-	var resp api.GetForwardedMessagesResponse
-	if err := h.Post(ctx, string(core.GetForwardedMessages), request, &resp); err != nil {
+func (h *HttpClient) GetForwardedMessages(ctx context.Context, request emi_core.GetForwardedMessagesRequest) (*emi_core.GetForwardedMessagesResponse, error) {
+	var resp emi_core.GetForwardedMessagesResponse
+	if err := h.Post(ctx, string(emi_core.GetForwardedMessages), request, &resp); err != nil {
 		return nil, err
 	}
 	return &resp, nil
 }
 
 // 标记消息为已读
-func (h *HttpClient) MarkMessageAsRead(ctx context.Context, request api.MarkMessageAsReadRequest) (*api.MarkMessageAsReadResponse, error) {
-	var resp api.MarkMessageAsReadResponse
-	if err := h.Post(ctx, string(core.MarkMessageAsRead), request, &resp); err != nil {
+func (h *HttpClient) MarkMessageAsRead(ctx context.Context, request emi_core.MarkMessageAsReadRequest) (*emi_core.MarkMessageAsReadResponse, error) {
+	var resp emi_core.MarkMessageAsReadResponse
+	if err := h.Post(ctx, string(emi_core.MarkMessageAsRead), request, &resp); err != nil {
 		return nil, err
 	}
 	return &resp, nil
@@ -408,54 +407,54 @@ func (h *HttpClient) MarkMessageAsRead(ctx context.Context, request api.MarkMess
 // FriendAPI
 
 // 发送好友戳一戳
-func (h *HttpClient) SendFriendNudge(ctx context.Context, request api.SendFriendNudgeRequest) (*api.SendFriendNudgeResponse, error) {
-	var resp api.SendFriendNudgeResponse
-	if err := h.Post(ctx, string(core.SendFriendNudge), request, &resp); err != nil {
+func (h *HttpClient) SendFriendNudge(ctx context.Context, request emi_core.SendFriendNudgeRequest) (*emi_core.SendFriendNudgeResponse, error) {
+	var resp emi_core.SendFriendNudgeResponse
+	if err := h.Post(ctx, string(emi_core.SendFriendNudge), request, &resp); err != nil {
 		return nil, err
 	}
 	return &resp, nil
 }
 
 // 发送名片点赞
-func (h *HttpClient) SendProfileLike(ctx context.Context, request api.SendProfileLikeRequest) (*api.SendProfileLikeResponse, error) {
-	var resp api.SendProfileLikeResponse
-	if err := h.Post(ctx, string(core.SendProfileLike), request, &resp); err != nil {
+func (h *HttpClient) SendProfileLike(ctx context.Context, request emi_core.SendProfileLikeRequest) (*emi_core.SendProfileLikeResponse, error) {
+	var resp emi_core.SendProfileLikeResponse
+	if err := h.Post(ctx, string(emi_core.SendProfileLike), request, &resp); err != nil {
 		return nil, err
 	}
 	return &resp, nil
 }
 
 // 删除好友
-func (h *HttpClient) DeleteFriend(ctx context.Context, request api.DeleteFriendRequest) (*api.DeleteFriendResponse, error) {
-	var resp api.DeleteFriendResponse
-	if err := h.Post(ctx, string(core.DeleteFriend), request, &resp); err != nil {
+func (h *HttpClient) DeleteFriend(ctx context.Context, request emi_core.DeleteFriendRequest) (*emi_core.DeleteFriendResponse, error) {
+	var resp emi_core.DeleteFriendResponse
+	if err := h.Post(ctx, string(emi_core.DeleteFriend), request, &resp); err != nil {
 		return nil, err
 	}
 	return &resp, nil
 }
 
 // 获取好友请求列表
-func (h *HttpClient) GetFriendRequests(ctx context.Context, request api.GetFriendRequestsRequest) (*api.GetFriendRequestsResponse, error) {
-	var resp api.GetFriendRequestsResponse
-	if err := h.Post(ctx, string(core.GetFriendRequests), request, &resp); err != nil {
+func (h *HttpClient) GetFriendRequests(ctx context.Context, request emi_core.GetFriendRequestsRequest) (*emi_core.GetFriendRequestsResponse, error) {
+	var resp emi_core.GetFriendRequestsResponse
+	if err := h.Post(ctx, string(emi_core.GetFriendRequests), request, &resp); err != nil {
 		return nil, err
 	}
 	return &resp, nil
 }
 
 // 同意好友请求
-func (h *HttpClient) AcceptFriendRequest(ctx context.Context, request api.AcceptFriendRequestRequest) (*api.AcceptFriendRequestResponse, error) {
-	var resp api.AcceptFriendRequestResponse
-	if err := h.Post(ctx, string(core.AcceptFriendRequest), request, &resp); err != nil {
+func (h *HttpClient) AcceptFriendRequest(ctx context.Context, request emi_core.AcceptFriendRequestRequest) (*emi_core.AcceptFriendRequestResponse, error) {
+	var resp emi_core.AcceptFriendRequestResponse
+	if err := h.Post(ctx, string(emi_core.AcceptFriendRequest), request, &resp); err != nil {
 		return nil, err
 	}
 	return &resp, nil
 }
 
 // 拒绝好友请求
-func (h *HttpClient) RejectFriendRequest(ctx context.Context, request api.RejectFriendRequestRequest) (*api.RejectFriendRequestResponse, error) {
-	var resp api.RejectFriendRequestResponse
-	if err := h.Post(ctx, string(core.RejectFriendRequest), request, &resp); err != nil {
+func (h *HttpClient) RejectFriendRequest(ctx context.Context, request emi_core.RejectFriendRequestRequest) (*emi_core.RejectFriendRequestResponse, error) {
+	var resp emi_core.RejectFriendRequestResponse
+	if err := h.Post(ctx, string(emi_core.RejectFriendRequest), request, &resp); err != nil {
 		return nil, err
 	}
 	return &resp, nil
@@ -464,189 +463,189 @@ func (h *HttpClient) RejectFriendRequest(ctx context.Context, request api.Reject
 // GroupAPI
 
 // 设置群名称
-func (h *HttpClient) SetGroupName(ctx context.Context, request api.SetGroupNameRequest) (*api.SetGroupNameResponse, error) {
-	var resp api.SetGroupNameResponse
-	if err := h.Post(ctx, string(core.SetGroupName), request, &resp); err != nil {
+func (h *HttpClient) SetGroupName(ctx context.Context, request emi_core.SetGroupNameRequest) (*emi_core.SetGroupNameResponse, error) {
+	var resp emi_core.SetGroupNameResponse
+	if err := h.Post(ctx, string(emi_core.SetGroupName), request, &resp); err != nil {
 		return nil, err
 	}
 	return &resp, nil
 }
 
 // 设置群头像
-func (h *HttpClient) SetGroupAvatar(ctx context.Context, request api.SetGroupAvatarRequest) (*api.SetGroupAvatarResponse, error) {
-	var resp api.SetGroupAvatarResponse
-	if err := h.Post(ctx, string(core.SetGroupAvatar), request, &resp); err != nil {
+func (h *HttpClient) SetGroupAvatar(ctx context.Context, request emi_core.SetGroupAvatarRequest) (*emi_core.SetGroupAvatarResponse, error) {
+	var resp emi_core.SetGroupAvatarResponse
+	if err := h.Post(ctx, string(emi_core.SetGroupAvatar), request, &resp); err != nil {
 		return nil, err
 	}
 	return &resp, nil
 }
 
 // 设置群名片
-func (h *HttpClient) SetGroupMemberCard(ctx context.Context, request api.SetGroupMemberCardRequest) (*api.SetGroupMemberCardResponse, error) {
-	var resp api.SetGroupMemberCardResponse
-	if err := h.Post(ctx, string(core.SetGroupMemberCard), request, &resp); err != nil {
+func (h *HttpClient) SetGroupMemberCard(ctx context.Context, request emi_core.SetGroupMemberCardRequest) (*emi_core.SetGroupMemberCardResponse, error) {
+	var resp emi_core.SetGroupMemberCardResponse
+	if err := h.Post(ctx, string(emi_core.SetGroupMemberCard), request, &resp); err != nil {
 		return nil, err
 	}
 	return &resp, nil
 }
 
 // 设置群成员专属头衔
-func (h *HttpClient) SetGroupMemberSpecialTitle(ctx context.Context, request api.SetGroupMemberSpecialTitleRequest) (*api.SetGroupMemberSpecialTitleResponse, error) {
-	var resp api.SetGroupMemberSpecialTitleResponse
-	if err := h.Post(ctx, string(core.SetGroupMemberSpecialTitle), request, &resp); err != nil {
+func (h *HttpClient) SetGroupMemberSpecialTitle(ctx context.Context, request emi_core.SetGroupMemberSpecialTitleRequest) (*emi_core.SetGroupMemberSpecialTitleResponse, error) {
+	var resp emi_core.SetGroupMemberSpecialTitleResponse
+	if err := h.Post(ctx, string(emi_core.SetGroupMemberSpecialTitle), request, &resp); err != nil {
 		return nil, err
 	}
 	return &resp, nil
 }
 
 // 设置群管理员
-func (h *HttpClient) SetGroupMemberAdmin(ctx context.Context, request api.SetGroupMemberAdminRequest) (*api.SetGroupMemberAdminResponse, error) {
-	var resp api.SetGroupMemberAdminResponse
-	if err := h.Post(ctx, string(core.SetGroupMemberAdmin), request, &resp); err != nil {
+func (h *HttpClient) SetGroupMemberAdmin(ctx context.Context, request emi_core.SetGroupMemberAdminRequest) (*emi_core.SetGroupMemberAdminResponse, error) {
+	var resp emi_core.SetGroupMemberAdminResponse
+	if err := h.Post(ctx, string(emi_core.SetGroupMemberAdmin), request, &resp); err != nil {
 		return nil, err
 	}
 	return &resp, nil
 }
 
 // 设置群成员禁言
-func (h *HttpClient) SetGroupMemberMute(ctx context.Context, request api.SetGroupMemberMuteRequest) (*api.SetGroupMemberMuteResponse, error) {
-	var resp api.SetGroupMemberMuteResponse
-	if err := h.Post(ctx, string(core.SetGroupMemberMute), request, &resp); err != nil {
+func (h *HttpClient) SetGroupMemberMute(ctx context.Context, request emi_core.SetGroupMemberMuteRequest) (*emi_core.SetGroupMemberMuteResponse, error) {
+	var resp emi_core.SetGroupMemberMuteResponse
+	if err := h.Post(ctx, string(emi_core.SetGroupMemberMute), request, &resp); err != nil {
 		return nil, err
 	}
 	return &resp, nil
 }
 
 // 设置群全员禁言
-func (h *HttpClient) SetGroupMemberWholeMute(ctx context.Context, request api.SetGroupMemberWholeMuteRequest) (*api.SetGroupMemberWholeMuteResponse, error) {
-	var resp api.SetGroupMemberWholeMuteResponse
-	if err := h.Post(ctx, string(core.SetGroupMemberWholeMute), request, &resp); err != nil {
+func (h *HttpClient) SetGroupMemberWholeMute(ctx context.Context, request emi_core.SetGroupMemberWholeMuteRequest) (*emi_core.SetGroupMemberWholeMuteResponse, error) {
+	var resp emi_core.SetGroupMemberWholeMuteResponse
+	if err := h.Post(ctx, string(emi_core.SetGroupMemberWholeMute), request, &resp); err != nil {
 		return nil, err
 	}
 	return &resp, nil
 }
 
 // 踢出群成员
-func (h *HttpClient) KickGroupMember(ctx context.Context, request api.KickGroupMemberRequest) (*api.KickGroupMemberResponse, error) {
-	var resp api.KickGroupMemberResponse
-	if err := h.Post(ctx, string(core.KickGroupMember), request, &resp); err != nil {
+func (h *HttpClient) KickGroupMember(ctx context.Context, request emi_core.KickGroupMemberRequest) (*emi_core.KickGroupMemberResponse, error) {
+	var resp emi_core.KickGroupMemberResponse
+	if err := h.Post(ctx, string(emi_core.KickGroupMember), request, &resp); err != nil {
 		return nil, err
 	}
 	return &resp, nil
 }
 
 // 获取群公告列表
-func (h *HttpClient) GetGroupAnnouncements(ctx context.Context, request api.GetGroupAnnouncementsRequest) (*api.GetGroupAnnouncementsResponse, error) {
-	var resp api.GetGroupAnnouncementsResponse
-	if err := h.Post(ctx, string(core.GetGroupAnnouncements), request, &resp); err != nil {
+func (h *HttpClient) GetGroupAnnouncements(ctx context.Context, request emi_core.GetGroupAnnouncementsRequest) (*emi_core.GetGroupAnnouncementsResponse, error) {
+	var resp emi_core.GetGroupAnnouncementsResponse
+	if err := h.Post(ctx, string(emi_core.GetGroupAnnouncements), request, &resp); err != nil {
 		return nil, err
 	}
 	return &resp, nil
 }
 
 // 发送群公告
-func (h *HttpClient) SendGroupAnnouncement(ctx context.Context, request api.SendGroupAnnouncementRequest) (*api.SendGroupAnnouncementResponse, error) {
-	var resp api.SendGroupAnnouncementResponse
-	if err := h.Post(ctx, string(core.SendGroupAnnouncement), request, &resp); err != nil {
+func (h *HttpClient) SendGroupAnnouncement(ctx context.Context, request emi_core.SendGroupAnnouncementRequest) (*emi_core.SendGroupAnnouncementResponse, error) {
+	var resp emi_core.SendGroupAnnouncementResponse
+	if err := h.Post(ctx, string(emi_core.SendGroupAnnouncement), request, &resp); err != nil {
 		return nil, err
 	}
 	return &resp, nil
 }
 
 // 删除群公告
-func (h *HttpClient) DeleteGroupAnnouncement(ctx context.Context, request api.DeleteGroupAnnouncementRequest) (*api.DeleteGroupAnnouncementResponse, error) {
-	var resp api.DeleteGroupAnnouncementResponse
-	if err := h.Post(ctx, string(core.DeleteGroupAnnouncement), request, &resp); err != nil {
+func (h *HttpClient) DeleteGroupAnnouncement(ctx context.Context, request emi_core.DeleteGroupAnnouncementRequest) (*emi_core.DeleteGroupAnnouncementResponse, error) {
+	var resp emi_core.DeleteGroupAnnouncementResponse
+	if err := h.Post(ctx, string(emi_core.DeleteGroupAnnouncement), request, &resp); err != nil {
 		return nil, err
 	}
 	return &resp, nil
 }
 
 // 获取群精华消息列表
-func (h *HttpClient) GetGroupEssenceMessages(ctx context.Context, request api.GetGroupEssenceMessagesRequest) (*api.GetGroupEssenceMessagesResponse, error) {
-	var resp api.GetGroupEssenceMessagesResponse
-	if err := h.Post(ctx, string(core.GetGroupEssenceMessages), request, &resp); err != nil {
+func (h *HttpClient) GetGroupEssenceMessages(ctx context.Context, request emi_core.GetGroupEssenceMessagesRequest) (*emi_core.GetGroupEssenceMessagesResponse, error) {
+	var resp emi_core.GetGroupEssenceMessagesResponse
+	if err := h.Post(ctx, string(emi_core.GetGroupEssenceMessages), request, &resp); err != nil {
 		return nil, err
 	}
 	return &resp, nil
 }
 
 // 设置群精华消息
-func (h *HttpClient) SetGroupEssenceMessage(ctx context.Context, request api.SetGroupEssenceMessageRequest) (*api.SetGroupEssenceMessageResponse, error) {
-	var resp api.SetGroupEssenceMessageResponse
-	if err := h.Post(ctx, string(core.SetGroupEssenceMessage), request, &resp); err != nil {
+func (h *HttpClient) SetGroupEssenceMessage(ctx context.Context, request emi_core.SetGroupEssenceMessageRequest) (*emi_core.SetGroupEssenceMessageResponse, error) {
+	var resp emi_core.SetGroupEssenceMessageResponse
+	if err := h.Post(ctx, string(emi_core.SetGroupEssenceMessage), request, &resp); err != nil {
 		return nil, err
 	}
 	return &resp, nil
 }
 
 // 退出群
-func (h *HttpClient) QuitGroup(ctx context.Context, request api.QuitGroupRequest) (*api.QuitGroupResponse, error) {
-	var resp api.QuitGroupResponse
-	if err := h.Post(ctx, string(core.QuitGroup), request, &resp); err != nil {
+func (h *HttpClient) QuitGroup(ctx context.Context, request emi_core.QuitGroupRequest) (*emi_core.QuitGroupResponse, error) {
+	var resp emi_core.QuitGroupResponse
+	if err := h.Post(ctx, string(emi_core.QuitGroup), request, &resp); err != nil {
 		return nil, err
 	}
 	return &resp, nil
 }
 
 // 发送群消息表情回应
-func (h *HttpClient) SendGroupMessageReaction(ctx context.Context, request api.SendGroupMessageReactionRequest) (*api.SendGroupMessageReactionResponse, error) {
-	var resp api.SendGroupMessageReactionResponse
-	if err := h.Post(ctx, string(core.SendGroupMessageReaction), request, &resp); err != nil {
+func (h *HttpClient) SendGroupMessageReaction(ctx context.Context, request emi_core.SendGroupMessageReactionRequest) (*emi_core.SendGroupMessageReactionResponse, error) {
+	var resp emi_core.SendGroupMessageReactionResponse
+	if err := h.Post(ctx, string(emi_core.SendGroupMessageReaction), request, &resp); err != nil {
 		return nil, err
 	}
 	return &resp, nil
 }
 
 // 发送群戳一戳
-func (h *HttpClient) SendGroupNudge(ctx context.Context, request api.SendGroupNudgeRequest) (*api.SendGroupNudgeResponse, error) {
-	var resp api.SendGroupNudgeResponse
-	if err := h.Post(ctx, string(core.SendGroupNudge), request, &resp); err != nil {
+func (h *HttpClient) SendGroupNudge(ctx context.Context, request emi_core.SendGroupNudgeRequest) (*emi_core.SendGroupNudgeResponse, error) {
+	var resp emi_core.SendGroupNudgeResponse
+	if err := h.Post(ctx, string(emi_core.SendGroupNudge), request, &resp); err != nil {
 		return nil, err
 	}
 	return &resp, nil
 }
 
 // 获取群通知列表
-func (h *HttpClient) GetGroupNotifications(ctx context.Context, request api.GetGroupNotificationsRequest) (*api.GetGroupNotificationsResponse, error) {
-	var resp api.GetGroupNotificationsResponse
-	if err := h.Post(ctx, string(core.GetGroupNotifications), request, &resp); err != nil {
+func (h *HttpClient) GetGroupNotifications(ctx context.Context, request emi_core.GetGroupNotificationsRequest) (*emi_core.GetGroupNotificationsResponse, error) {
+	var resp emi_core.GetGroupNotificationsResponse
+	if err := h.Post(ctx, string(emi_core.GetGroupNotifications), request, &resp); err != nil {
 		return nil, err
 	}
 	return &resp, nil
 }
 
 // 同意入群/邀请他人入群请求
-func (h *HttpClient) AcceptGroupRequest(ctx context.Context, request api.AcceptGroupRequestRequest) (*api.AcceptGroupRequestResponse, error) {
-	var resp api.AcceptGroupRequestResponse
-	if err := h.Post(ctx, string(core.AcceptGroupRequest), request, &resp); err != nil {
+func (h *HttpClient) AcceptGroupRequest(ctx context.Context, request emi_core.AcceptGroupRequestRequest) (*emi_core.AcceptGroupRequestResponse, error) {
+	var resp emi_core.AcceptGroupRequestResponse
+	if err := h.Post(ctx, string(emi_core.AcceptGroupRequest), request, &resp); err != nil {
 		return nil, err
 	}
 	return &resp, nil
 }
 
 // 拒绝入群/邀请他人入群请求
-func (h *HttpClient) RejectGroupRequest(ctx context.Context, request api.RejectGroupRequestRequest) (*api.RejectGroupRequestResponse, error) {
-	var resp api.RejectGroupRequestResponse
-	if err := h.Post(ctx, string(core.RejectGroupRequest), request, &resp); err != nil {
+func (h *HttpClient) RejectGroupRequest(ctx context.Context, request emi_core.RejectGroupRequestRequest) (*emi_core.RejectGroupRequestResponse, error) {
+	var resp emi_core.RejectGroupRequestResponse
+	if err := h.Post(ctx, string(emi_core.RejectGroupRequest), request, &resp); err != nil {
 		return nil, err
 	}
 	return &resp, nil
 }
 
 // 同意他人邀请自身入群
-func (h *HttpClient) AcceptGroupInvitation(ctx context.Context, request api.AcceptGroupInvitationRequest) (*api.AcceptGroupInvitationResponse, error) {
-	var resp api.AcceptGroupInvitationResponse
-	if err := h.Post(ctx, string(core.AcceptGroupInvitation), request, &resp); err != nil {
+func (h *HttpClient) AcceptGroupInvitation(ctx context.Context, request emi_core.AcceptGroupInvitationRequest) (*emi_core.AcceptGroupInvitationResponse, error) {
+	var resp emi_core.AcceptGroupInvitationResponse
+	if err := h.Post(ctx, string(emi_core.AcceptGroupInvitation), request, &resp); err != nil {
 		return nil, err
 	}
 	return &resp, nil
 }
 
 // 拒绝他人邀请自身入群
-func (h *HttpClient) RejectGroupInvitation(ctx context.Context, request api.RejectGroupInvitationRequest) (*api.RejectGroupInvitationResponse, error) {
-	var resp api.RejectGroupInvitationResponse
-	if err := h.Post(ctx, string(core.RejectGroupInvitation), request, &resp); err != nil {
+func (h *HttpClient) RejectGroupInvitation(ctx context.Context, request emi_core.RejectGroupInvitationRequest) (*emi_core.RejectGroupInvitationResponse, error) {
+	var resp emi_core.RejectGroupInvitationResponse
+	if err := h.Post(ctx, string(emi_core.RejectGroupInvitation), request, &resp); err != nil {
 		return nil, err
 	}
 	return &resp, nil
@@ -655,99 +654,99 @@ func (h *HttpClient) RejectGroupInvitation(ctx context.Context, request api.Reje
 // FileAPI
 
 // 上传私聊文件
-func (h *HttpClient) UploadPrivateFile(ctx context.Context, request api.UploadPrivateFileRequest) (*api.UploadPrivateFileResponse, error) {
-	var resp api.UploadPrivateFileResponse
-	if err := h.Post(ctx, string(core.UploadPrivateFile), request, &resp); err != nil {
+func (h *HttpClient) UploadPrivateFile(ctx context.Context, request emi_core.UploadPrivateFileRequest) (*emi_core.UploadPrivateFileResponse, error) {
+	var resp emi_core.UploadPrivateFileResponse
+	if err := h.Post(ctx, string(emi_core.UploadPrivateFile), request, &resp); err != nil {
 		return nil, err
 	}
 	return &resp, nil
 }
 
 // 上传群文件
-func (h *HttpClient) UploadGroupFile(ctx context.Context, request api.UploadGroupFileRequest) (*api.UploadGroupFileResponse, error) {
-	var resp api.UploadGroupFileResponse
-	if err := h.Post(ctx, string(core.UploadGroupFile), request, &resp); err != nil {
+func (h *HttpClient) UploadGroupFile(ctx context.Context, request emi_core.UploadGroupFileRequest) (*emi_core.UploadGroupFileResponse, error) {
+	var resp emi_core.UploadGroupFileResponse
+	if err := h.Post(ctx, string(emi_core.UploadGroupFile), request, &resp); err != nil {
 		return nil, err
 	}
 	return &resp, nil
 }
 
 // 获取私聊文件下载链接
-func (h *HttpClient) GetPrivateFileDownloadURL(ctx context.Context, request api.GetPrivateFileDownloadURLRequest) (*api.GetPrivateFileDownloadURLResponse, error) {
-	var resp api.GetPrivateFileDownloadURLResponse
-	if err := h.Post(ctx, string(core.GetPrivateFileDownloadURL), request, &resp); err != nil {
+func (h *HttpClient) GetPrivateFileDownloadURL(ctx context.Context, request emi_core.GetPrivateFileDownloadURLRequest) (*emi_core.GetPrivateFileDownloadURLResponse, error) {
+	var resp emi_core.GetPrivateFileDownloadURLResponse
+	if err := h.Post(ctx, string(emi_core.GetPrivateFileDownloadURL), request, &resp); err != nil {
 		return nil, err
 	}
 	return &resp, nil
 }
 
 // 获取群文件下载链接
-func (h *HttpClient) GetGroupFileDownloadURL(ctx context.Context, request api.GetGroupFileDownloadURLRequest) (*api.GetGroupFileDownloadURLResponse, error) {
-	var resp api.GetGroupFileDownloadURLResponse
-	if err := h.Post(ctx, string(core.GetGroupFileDownloadURL), request, &resp); err != nil {
+func (h *HttpClient) GetGroupFileDownloadURL(ctx context.Context, request emi_core.GetGroupFileDownloadURLRequest) (*emi_core.GetGroupFileDownloadURLResponse, error) {
+	var resp emi_core.GetGroupFileDownloadURLResponse
+	if err := h.Post(ctx, string(emi_core.GetGroupFileDownloadURL), request, &resp); err != nil {
 		return nil, err
 	}
 	return &resp, nil
 }
 
 // 获取群文件列表
-func (h *HttpClient) GetGroupFiles(ctx context.Context, request api.GetGroupFilesRequest) (*api.GetGroupFilesResponse, error) {
-	var resp api.GetGroupFilesResponse
-	if err := h.Post(ctx, string(core.GetGroupFiles), request, &resp); err != nil {
+func (h *HttpClient) GetGroupFiles(ctx context.Context, request emi_core.GetGroupFilesRequest) (*emi_core.GetGroupFilesResponse, error) {
+	var resp emi_core.GetGroupFilesResponse
+	if err := h.Post(ctx, string(emi_core.GetGroupFiles), request, &resp); err != nil {
 		return nil, err
 	}
 	return &resp, nil
 }
 
 // 移动群文件
-func (h *HttpClient) MoveGroupFile(ctx context.Context, request api.MoveGroupFileRequest) (*api.MoveGroupFileResponse, error) {
-	var resp api.MoveGroupFileResponse
-	if err := h.Post(ctx, string(core.MoveGroupFile), request, &resp); err != nil {
+func (h *HttpClient) MoveGroupFile(ctx context.Context, request emi_core.MoveGroupFileRequest) (*emi_core.MoveGroupFileResponse, error) {
+	var resp emi_core.MoveGroupFileResponse
+	if err := h.Post(ctx, string(emi_core.MoveGroupFile), request, &resp); err != nil {
 		return nil, err
 	}
 	return &resp, nil
 }
 
 // 重命名群文件
-func (h *HttpClient) RenameGroupFile(ctx context.Context, request api.RenameGroupFileRequest) (*api.RenameGroupFileResponse, error) {
-	var resp api.RenameGroupFileResponse
-	if err := h.Post(ctx, string(core.RenameGroupFile), request, &resp); err != nil {
+func (h *HttpClient) RenameGroupFile(ctx context.Context, request emi_core.RenameGroupFileRequest) (*emi_core.RenameGroupFileResponse, error) {
+	var resp emi_core.RenameGroupFileResponse
+	if err := h.Post(ctx, string(emi_core.RenameGroupFile), request, &resp); err != nil {
 		return nil, err
 	}
 	return &resp, nil
 }
 
 // 删除群文件
-func (h *HttpClient) DeleteGroupFile(ctx context.Context, request api.DeleteGroupFileRequest) (*api.DeleteGroupFileResponse, error) {
-	var resp api.DeleteGroupFileResponse
-	if err := h.Post(ctx, string(core.DeleteGroupFile), request, &resp); err != nil {
+func (h *HttpClient) DeleteGroupFile(ctx context.Context, request emi_core.DeleteGroupFileRequest) (*emi_core.DeleteGroupFileResponse, error) {
+	var resp emi_core.DeleteGroupFileResponse
+	if err := h.Post(ctx, string(emi_core.DeleteGroupFile), request, &resp); err != nil {
 		return nil, err
 	}
 	return &resp, nil
 }
 
 // 创建群文件夹
-func (h *HttpClient) CreateGroupFolder(ctx context.Context, request api.CreateGroupFolderRequest) (*api.CreateGroupFolderResponse, error) {
-	var resp api.CreateGroupFolderResponse
-	if err := h.Post(ctx, string(core.CreateGroupFolder), request, &resp); err != nil {
+func (h *HttpClient) CreateGroupFolder(ctx context.Context, request emi_core.CreateGroupFolderRequest) (*emi_core.CreateGroupFolderResponse, error) {
+	var resp emi_core.CreateGroupFolderResponse
+	if err := h.Post(ctx, string(emi_core.CreateGroupFolder), request, &resp); err != nil {
 		return nil, err
 	}
 	return &resp, nil
 }
 
 // 重命名群文件夹
-func (h *HttpClient) RenameGroupFolder(ctx context.Context, request api.RenameGroupFolderRequest) (*api.RenameGroupFolderResponse, error) {
-	var resp api.RenameGroupFolderResponse
-	if err := h.Post(ctx, string(core.RenameGroupFolder), request, &resp); err != nil {
+func (h *HttpClient) RenameGroupFolder(ctx context.Context, request emi_core.RenameGroupFolderRequest) (*emi_core.RenameGroupFolderResponse, error) {
+	var resp emi_core.RenameGroupFolderResponse
+	if err := h.Post(ctx, string(emi_core.RenameGroupFolder), request, &resp); err != nil {
 		return nil, err
 	}
 	return &resp, nil
 }
 
 // 删除群文件夹
-func (h *HttpClient) DeleteGroupFolder(ctx context.Context, request api.DeleteGroupFolderRequest) (*api.DeleteGroupFolderResponse, error) {
-	var resp api.DeleteGroupFolderResponse
-	if err := h.Post(ctx, string(core.DeleteGroupFolder), request, &resp); err != nil {
+func (h *HttpClient) DeleteGroupFolder(ctx context.Context, request emi_core.DeleteGroupFolderRequest) (*emi_core.DeleteGroupFolderResponse, error) {
+	var resp emi_core.DeleteGroupFolderResponse
+	if err := h.Post(ctx, string(emi_core.DeleteGroupFolder), request, &resp); err != nil {
 		return nil, err
 	}
 	return &resp, nil

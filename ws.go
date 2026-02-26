@@ -9,8 +9,7 @@ import (
 	"net/http"
 	"sync"
 
-	core "github.com/aK1r4z/emi-core"
-	milky_types "github.com/aK1r4z/emi-core/types"
+	"github.com/aK1r4z/emi-core"
 	"github.com/gorilla/websocket"
 )
 
@@ -19,18 +18,18 @@ var ErrAlreadyConnected = errors.New("already connected")
 type WebsocketEventSource struct {
 	sync.RWMutex
 
-	logger core.Logger
+	logger Logger
 
 	wsGateway   string
 	accessToken string
 
 	wsConn *websocket.Conn
 
-	eventChan chan milky_types.RawEvent
+	eventChan chan emi_core.RawEvent
 	closeChan chan any
 }
 
-func NewWebsocketEventSource(logger core.Logger, wsGateway string, accessToken string) *WebsocketEventSource {
+func NewWebsocketEventSource(logger Logger, wsGateway string, accessToken string) *WebsocketEventSource {
 	return &WebsocketEventSource{
 		logger: logger,
 
@@ -49,7 +48,7 @@ func (w *WebsocketEventSource) Wait() {
 }
 
 // 开启
-func (w *WebsocketEventSource) Open() (chan milky_types.RawEvent, error) {
+func (w *WebsocketEventSource) Open() (chan emi_core.RawEvent, error) {
 	w.Lock()
 	defer w.Unlock()
 
@@ -70,7 +69,7 @@ func (w *WebsocketEventSource) Open() (chan milky_types.RawEvent, error) {
 	}
 
 	w.wsConn = wsConn
-	w.eventChan = make(chan milky_types.RawEvent)
+	w.eventChan = make(chan emi_core.RawEvent)
 	w.closeChan = make(chan any)
 
 	go w.receive(wsConn, w.eventChan, w.closeChan)
@@ -101,7 +100,7 @@ func (w *WebsocketEventSource) Close() error {
 
 func (w *WebsocketEventSource) receive(
 	wsConn *websocket.Conn,
-	eventChan chan milky_types.RawEvent,
+	eventChan chan emi_core.RawEvent,
 	closeChan chan any,
 ) {
 	for {
@@ -156,7 +155,7 @@ func (w *WebsocketEventSource) receive(
 		}
 
 		// 把事件解码为结构体
-		rawEvent := milky_types.RawEvent{}
+		rawEvent := emi_core.RawEvent{}
 		if err = json.Unmarshal(messageBytes, &rawEvent); err != nil {
 			w.logger.Errorf("Failed to decode message: %v", err)
 			// [TODO] 错误处理
