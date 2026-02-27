@@ -23,7 +23,7 @@ type Logger interface {
 }
 
 type EventSource interface {
-	Open() (chan emi_core.RawEvent, error)
+	Open(context.Context) (chan emi_core.RawEvent, error)
 	Close() error
 }
 

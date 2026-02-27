@@ -3,6 +3,7 @@ package emi_transport
 import (
 	"bytes"
 	"compress/zlib"
+	"context"
 	"encoding/json"
 	"errors"
 	"io"
@@ -48,7 +49,7 @@ func (w *WebsocketEventSource) Wait() {
 }
 
 // 开启
-func (w *WebsocketEventSource) Open() (chan emi_core.RawEvent, error) {
+func (w *WebsocketEventSource) Open(ctx context.Context) (chan emi_core.RawEvent, error) {
 	w.Lock()
 	defer w.Unlock()
 
@@ -63,7 +64,7 @@ func (w *WebsocketEventSource) Open() (chan emi_core.RawEvent, error) {
 		header.Add("Authorization", "Bearer "+w.accessToken)
 	}
 
-	wsConn, _, err := dialer.Dial(w.wsGateway, header)
+	wsConn, _, err := dialer.DialContext(ctx, w.wsGateway, header)
 	if err != nil {
 		return nil, err
 	}
