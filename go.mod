@@ -9,6 +9,6 @@ retract (
 )
 
 require (
-	github.com/aK1r4z/emi-core v0.0.1
+	github.com/aK1r4z/emi-core v0.0.2
 	github.com/gorilla/websocket v1.5.3
 )
